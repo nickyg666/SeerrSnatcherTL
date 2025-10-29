@@ -12,11 +12,17 @@ I'm not sure how to add the packages to windows environment.
 # It also requires you fill in some fields: rss feeds, TMDB API key, and your watched directories at the top of the script. You can also configure POLLING_INTERVAL to check less often than every 2 minutes, or change the webhook listener port.
 
 This is my current stack:
+
 TorrentLeech account (they don't allow custom RSS anymore so this uses their 2 available feeds and caches results to file to eventually build a local database)
+
 deluge-gtk (for watching folders for new torrents, you can use any client you like with the capability)
+
 jellyseerr (for managing requests, it is set to auto approve with a webhook configured to localhost:5005 to send requests)
+
 jellyfin (hooked to jellyseerr for library info, using custom tabs to display jellyseerr dash also)
+
 TMDB querying (needs API key, it is free to create an account there and get one)
+
 systemd service (unit file included in release v1.0.2)
 
 What this script does in detail:
