@@ -44,10 +44,15 @@ What this script does in detail:
 - logs everything you could want to know about the process, change logging to DEBUG from INFO if you want to see EVERYTHING.
 
 Files it creates:
+
 rss-feeds.json/.bak
+
 downloaded_history.json
+
 tracked_shows.json
+
 tmdb_metadata_cache.json
+
 SeerrSnatcherTL.log
 
 What it won't do:
