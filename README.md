@@ -9,8 +9,10 @@ This project is released under **The Unlicense**, placing the code in the public
 You may use, modify, redistribute, or relicense the project without restriction. I made this with copilot (it sucks at coding, did the first few hundred lines only) and mostly chatGPT.
 
 
-roadmap - next few weeks or months:
+roadmap - next few weeks or months: 
 
+fix rss backup
+that's it for now
 
 v 2.1.0 new features
 add apps and handling for ANDROID TV and Roku (unfinished, but basic implementation for roku TV app included in this version)
