@@ -21,20 +21,33 @@ extra requests page to add things that are in tmdb but can't be added in jellyse
   it searches TMDB by title, matches TMDB id, provides poster and if you click details will let you request seasons. I think if you just click request it adds all seasons. I forget. clicking poster will take you to tmdb result page.
 
 general features introduced in v2.0:
+
 dashboard for consolidated views
+
 searchable logs via logs page
+
 searchable rss feed via RSS page
+
 tracked items view with posters via tracked page (can make searchable if you like)
+
 tracks downloads so no more duplicates (searchable)
+
 will remove request from tracked items once media_available webhook is received from Jellyseerr
+
 scan now / refresh RSS buttons at top, restart button in settings
+
 
 settings:
 many configurable things, added user management to manage more than one TV/Movies dir. 
+
 SMTP configuration as well as notification toggles for what you want to be notified for.
+
 SMTP test send button / function
+
 preferred quality with optional strict enforcement (if you don't want to grab higher quality than is selected when available)
+
 enable background tasks toggle (keep checked unless you don't want to stay on top of things)
+
 log level setting
 
 ---
