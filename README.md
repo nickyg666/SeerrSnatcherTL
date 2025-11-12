@@ -1,7 +1,62 @@
 # SeerrSnatcherTL
 This is a program written in Python to handle webhooks from Jellyseer, and automatically download their torrents to a watched directory if it is found in the rss cache.
 It was born out of a necessity for a custom automation solution similar to radarr/sonarr but more lightweight. 
-I don't expect it to do movies very well. 
+
+SeerrSnatcherTL v2.0 release - new WebUI!
+
+## License
+This project is released under **The Unlicense**, placing the code in the public domain.
+You may use, modify, redistribute, or relicense the project without restriction. I made this with copilot (it sucks at coding, did the first few hundred lines only) and mostly chatGPT.
+
+
+roadmap - next few weeks or months:
+
+
+currently working on for next release:
+add apps and handling for ANDROID TV and Roku
+
+extra requests page to add things that are in tmdb but can't be added in jellyseerr for one reason or another (request more unavailable)
+---
+
+## v2.0 â€“ Major Update
+
+### Project Structure
+- Expanded into a modular multi-file application.
+- Added directories for templates, static assets, configuration, and service files.
+- Introduced a maintainable layout suitable for future growth.
+
+### Web Interface
+- Added Flask-based web UI.
+- New pages: Dashboard, Downloads, Logs, RSS, Tracked Items, Settings.
+- Implemented Jinja2 templates and a unified styling system.
+- Added client-side JS for enhanced interactions.
+
+### Configuration
+- Introduced `settings.json` for editable runtime settings.
+- Removed hardcoded values and centralized configuration.
+
+### Background Processing
+- Improved periodic worker for RSS updates and tracked-item processing.
+- Ensured required directories and caches are initialized on startup.
+
+### RSS and Metadata Handling
+- Improved RSS caching with automatic backups.
+- Enhanced TMDB metadata caching with airdate storage.
+- More robust handling of incomplete or malformed API responses.
+
+### Torrent Handling
+- Improved torrent file saving, naming, and duplicate prevention.
+- Added quality scoring and safer content-type checks.
+- Improved download history tracking.
+
+### Webhook Handling
+- Improved extraction of media type, title, and seasons from webhook payloads.
+- Ensured consistent updates when new items or seasons are added.
+
+### System Integration
+- Added `SeerrSnatcherTL.service` for systemd support.
+- Included a `requirements.txt` for consistent environment setup.
+
 # PLEASE FEEL FREE TO STAR OR ADD PULL REQUESTS AND OPEN ISSUES
 
 # It requires requests and feedparser
