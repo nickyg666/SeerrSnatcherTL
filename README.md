@@ -1,6 +1,6 @@
 # SeerrSnatcherTL
 This is a program written in Python to handle webhooks from Jellyseer, and automatically download their torrents to a watched directory if it is found in the rss cache.
-It was born out of a necessity for a custom automation solution similar to radarr/sonarr but more lightweight. 
+It was born out of a necessity for a custom automation solution similar to radarr/sonarr but more lightweight. It spiraled into a whole web app.
 
 SeerrSnatcherTL v2.0 release - new WebUI!
 
@@ -12,10 +12,29 @@ You may use, modify, redistribute, or relicense the project without restriction.
 roadmap - next few weeks or months:
 
 
-currently working on for next release:
-add apps and handling for ANDROID TV and Roku
+v 2.1.0 new features
+add apps and handling for ANDROID TV and Roku (unfinished, but basic implementation for roku TV app included in this version)
 
-extra requests page to add things that are in tmdb but can't be added in jellyseerr for one reason or another (request more unavailable)
+extra requests page to add things that are in tmdb but can't be added in jellyseerr for one reason or another (request more unavailable, etc)
+  it searches TMDB by title, matches TMDB id, provides poster and if you click details will let you request seasons. I think if you just click request it adds all seasons. I forget. clicking poster will take you to tmdb result page.
+
+general features introduced in v2.0:
+dashboard for consolidated views
+searchable logs via logs page
+searchable rss feed via RSS page
+tracked items view with posters via tracked page (can make searchable if you like)
+tracks downloads so no more duplicates (searchable)
+will remove request from tracked items once media_available webhook is received from Jellyseerr
+scan now / refresh RSS buttons at top, restart button in settings
+
+settings:
+many configurable things, added user management to manage more than one TV/Movies dir. 
+SMTP configuration as well as notification toggles for what you want to be notified for.
+SMTP test send button / function
+preferred quality with optional strict enforcement (if you don't want to grab higher quality than is selected when available)
+enable background tasks toggle (keep checked unless you don't want to stay on top of things)
+log level setting
+
 ---
 
 ## v2.0 â€“ Major Update
@@ -72,48 +91,54 @@ TorrentLeech account (they don't allow custom RSS anymore so this uses their 2 a
 
 deluge-gtk (for watching folders for new torrents, you can use any client you like with the capability)
 
-jellyseerr (for managing requests, it is set to auto approve with a webhook configured to localhost:5005 to send requests)
+jellyseerr (for managing requests, it is set to auto approve with a webhook configured to localhost:5006/webhook to send requests and media_available hooks)
 
-jellyfin (hooked to jellyseerr for library info, using custom tabs to display jellyseerr dash also)
+jellyfin (hooked to jellyseerr for library info, using custom tabs to display jellyseerr dash also, will send webhook when requested content available)
 
 TMDB querying (needs API key, it is free to create an account there and get one)
 
 systemd service (unit file included in release v1.0.2)
 
-What this script does in detail:
+What this script/web app does in detail:
 
 - reads RSS feeds from your torrent provider. Can't say this will work well with providers other than TorrentLeech, you may need to tweak it to fit your fields. It's not written to handle magnets. If you add a feature request for other providers and send me valid creds/rss feeds I will try to incorporate more providers.
 
-- caches the RSS feeds to a local file, which is backed up every hour. Will restore from backup if rss cache is corrupt or missing.
+- caches the RSS feeds to a local file, which is backed up every hour*. Will restore from backup if rss cache is corrupt or missing.
+* backup logic needs to be fixed in current releases
+  
+- accepts webhooks on port localhost:5006/webhook from jellyseerr/probably overseerr too (UNTESTED), and adds the entry to tracked_items dictionary.
 
-- accepts webhooks on port 5005 from jellyseerr/probably overseerr too (UNTESTED), and adds the entry to tracked_shows dictionary.
+- queries TMDB to get the air dates and seasons available for the shows you're tracking, caches the data and updates all the time (work in progress cutting down on api calls). Updates cache when new request is received.
 
-- queries TMDB to get the air dates and seasons available for the shows you're tracking, caches the data and updates daily. Updates cache when new request is received.
+- loosely matches TMDB result for tracked item to your RSS entries, tightened matching heuristics a lot to not pull garbage on accident or get bad matches.
 
-- loosely matches TMDB result for tracked show to your RSS entries
+- if it finds a good enough match with high confidence, check for existing history in download history, if there is none then download the torrent to the watched directory based on if it is tagged TV or movie. Record to downloaded items so it does not duplicate downloads.
 
-- if it finds a good enough match with high confidence, check for existing history in download history, if there is none then download the torrent to the watched directory based on if it is tagged TV or movie.
-
-- Checks every 2 minutes (configurable in POLLING_INTERVAL) for RSS updates / new matches.
+- Checks every 2 minutes (configurable in settings) for new matches. Every 10 minutes for new RSS.
 
 - logs everything you could want to know about the process, change logging to DEBUG from INFO if you want to see EVERYTHING.
 
 Files it creates:
 
-rss-feeds.json/.bak
+posters/ folder in base dir to cache posters
+
+rss-feeds.json/.bak (.bak not working as of 2.1.0)
 
 downloaded_history.json
 
-tracked_shows.json
+tracked_items.json
 
 tmdb_metadata_cache.json
 
+tmdb_newshow_dump.json
+
 SeerrSnatcherTL.log
+
+settings.json 
 
 What it won't do:
 - rocket science
-- filter quality out, it will download the first match it finds (usually in the highest quality for TL but it's random luck of the draw, it is not setup to download multiple qualities either so you may get stuck with some 480/720)
 - things I didn't write it to (issues, pull requests, and feature requests welcome!)
-- find torrents outside of the rss_cache (that's my biggest issue right now)
+- find torrents outside of the rss_cache (that's my biggest issue right now, and a fundamental flaw of how it works)
   
 You can also use jellyseerr with Plex or Emby and (probably) achieve the same results. You don't need to use deluge as the client, any of them that support folder monitoring with a custom folder for downloads should work fine. This is mostly crafted to deal with TorrentLeech and their restrictive RSS feeds.
