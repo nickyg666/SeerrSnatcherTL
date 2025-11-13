@@ -2,11 +2,22 @@
 This is a program written in Python to handle webhooks from Jellyseer, and automatically download their torrents to a watched directory if it is found in the rss cache.
 It was born out of a necessity for a custom automation solution similar to radarr/sonarr but more lightweight. It spiraled into a whole web app.
 
-SeerrSnatcherTL v2.0 release - new WebUI!
-
 ## License
 This project is released under **The Unlicense**, placing the code in the public domain.
 You may use, modify, redistribute, or relicense the project without restriction. I made this with copilot (it sucks at coding, did the first few hundred lines only) and mostly chatGPT.
+
+Latest version: 2.1.2 (stable)
+screenshots:
+<img width="2880" height="1920" alt="Screenshot 2025-11-12 194031" src="https://github.com/user-attachments/assets/af2ffdc1-acc1-4c3b-adb7-51d9f9de224f" />
+<img width="2880" height="1920" alt="Screenshot 2025-11-12 194010" src="https://github.com/user-attachments/assets/6fad7a29-88b7-4bf4-8d49-3c9a44766611" />
+<img width="2880" height="1920" alt="Screenshot 2025-11-12 193921" src="https://github.com/user-attachments/assets/e246df59-233c-457b-8f79-e20dc6eec093" />
+<img width="2880" height="1920" alt="Screenshot 2025-11-12 193900" src="https://github.com/user-attachments/assets/53a3958c-9c22-4318-9842-6c46210daaa2" />
+<img width="2880" height="1920" alt="Screenshot 2025-11-12 193837" src="https://github.com/user-attachments/assets/33a6d5d2-d885-472d-9624-bba8fbb050b9" />
+<img width="2880" height="1920" alt="Screenshot 2025-11-12 193801" src="https://github.com/user-attachments/assets/a3a6ed13-785f-450a-887e-1767f16f7bcf" />
+<img width="2880" height="1920" alt="Screenshot 2025-11-12 193747" src="https://github.com/user-attachments/assets/b609fefa-1afb-4e10-9f78-02cf34af644b" />
+<img width="2880" height="1920" alt="Screenshot 2025-11-12 193726" src="https://github.com/user-attachments/assets/5a4301e2-5d45-4c26-b7d1-a0c7e5a6e5d1" />
+
+
 
 
 roadmap - next few weeks or months: 
