@@ -1,0 +1,75 @@
+# ==========================================
+# Caddyfile config, built for basic ubuntu based caddy from the repo, 
+# to hide jellyseerr and SeerrSnatcherTL behind token gated access 
+# that can only be accessed through iframes or JWT token access,
+# so you can embed in custom tabs plugin inside Jellyfin.
+# requires a real domain, and subdomains.
+# ==========================================
+
+
+# ==========================================
+# Jellyfin at 8096
+# ==========================================
+yr.domain.lol {
+    reverse_proxy localhost:8096
+}
+
+# ==========================================
+# Snatcher (snatcher.yrdomain.lol) at 5006
+# ==========================================
+snatcher.yr.domain.lol {
+
+    log {
+        output file /var/log/caddy/snatcher.log
+        level DEBUG
+    }
+
+    @hasCookie {
+        header_regexp Cookie snatcher_token=.*
+    }
+    handle @hasCookie {
+        header Content-Security-Policy "frame-ancestors https://yr.domain.lol;"
+        reverse_proxy localhost:5006
+    }
+
+    @hasToken {
+        query token=your_special_tokenVeryLongWithLotsOfStuff,
+    }
+    handle @hasToken {
+        header Content-Security-Policy "frame-ancestors https://yr.domain.lol;"
+        header Set-Cookie "snatcher_token=valid; Path=/; HttpOnly; Secure; SameSite=None"
+        reverse_proxy localhost:5006
+    }
+}
+
+# ==========================================
+# JellySeerr (seer.yr.domain.lol) at 5055
+# ==========================================
+seer.yr.domain.lol {
+
+    log {
+        output file /var/log/caddy/seer.log
+        level DEBUG
+    }
+
+    @hasCookie {
+        header_regexp Cookie seer_token=.*
+    }
+    handle @hasCookie {
+        header Content-Security-Policy "frame-ancestors https://yr.domain.lol;"
+        reverse_proxy localhost:5055
+    }
+
+    @hasToken {
+        query token=your_special_tokenVeryLongWithLotsOfStuff,
+    }
+    handle @hasToken {
+        header Content-Security-Policy "frame-ancestors https://yr.domain.lol;"
+        header Set-Cookie "seer_token=valid; Path=/; HttpOnly; Secure; SameSite=None"
+        reverse_proxy localhost:5055
+    }
+
+    handle {
+        respond "Forbidden" 403
+    }
+}
