@@ -1,0 +1,23 @@
+<style>
+    :root {
+        --save-gut: max(env(safe-area-inset-left), 3.3%);
+    }
+   @media only screen and (max-width: 990px) {
+       .requestIframe{
+           height: calc(100vh - 105.15px)!important;
+           margin-top: -6.15px!important;
+       }
+   }
+    .requestIframe {
+        width: 100%;
+        height: calc(100vh - 50.716px);
+        position: absolute;
+        border: 0;
+        margin-top: -20.716px;
+    }
+</style>
+
+<div class="sections">
+  <iframe class="requestIframe" src="https://snatcher.yr.domain.lol/?token=yoursupersecretgeneratedbase64.32.to.64.digitsToken">
+  </iframe>
+</div>
