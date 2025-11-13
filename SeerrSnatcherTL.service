@@ -1,0 +1,17 @@
+[Unit]
+Description=SeerrSnatcherTL: Jellyseerr Webhook Listener, rss parser and torrent downloader
+After=network.target
+
+[Service]
+Type=simple
+User=[change to your local user]
+Group=[change to your local user]
+WorkingDirectory=/usr/local/bin/SeerrSnatcherTL
+ExecStart=/usr/bin/env python3 /usr/local/bin/SeerrSnatcherTL/SeerrSnatcherTL.py
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
