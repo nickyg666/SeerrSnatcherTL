@@ -21,9 +21,9 @@ screenshots:
 
 
 roadmap - next few weeks or months: 
+maybe add new token generator back in, AI hallucinated it away from settings. 
 
-fix rss backup
-that's it for now
+
 
 v 2.1.0 new features
 add apps and handling for ANDROID TV and Roku (unfinished, but basic implementation for roku TV app included in this version)
