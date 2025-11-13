@@ -2,6 +2,7 @@
 This is a program written in Python to handle webhooks from Jellyseer, and automatically download their torrents to a watched directory if it is found in the rss cache.
 It was born out of a necessity for a custom automation solution similar to radarr/sonarr but more lightweight. It spiraled into a whole web app.
 
+# Shoutout to my loving wife and considerate boss for dealing with my shit while I hyper focus on this project, it's coming to a close finally
 ## License
 This project is released under **The Unlicense**, placing the code in the public domain.
 You may use, modify, redistribute, or relicense the project without restriction. I made this with copilot (it sucks at coding, did the first few hundred lines only) and mostly chatGPT.
