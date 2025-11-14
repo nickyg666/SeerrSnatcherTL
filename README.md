@@ -26,18 +26,19 @@ You may use, modify, redistribute, or relicense the project without restriction.
 
 ## roadmap - next few weeks or months: 
 
-* maybe add new token generator back in for caddy/jellyfin custom tabs plugin configs, AI hallucinated it away from settings. 
+* maybe add new token generator back in for caddy/jellyfin custom tabs plugin configs, AI hallucinated it away from settings. # incorporated into 2.1.3/2.2.0 betas
 
-* add submit as user logic in js/py to incorporate that feature into extra requests page, probably rework CSS there so it looks nice
+* add submit as user logic in js/py to incorporate that feature into extra requests page, probably rework CSS there so it looks nice # incorporated into 2.1.3/2.2.0 betas
 
-* add notification toggle in settings, and logic for "stale requests" notification. Kind of like a nudge that if it hasn't pulled a request in {configurable_time_period} since the recorded request's received date/time, you should go fetch it yourself because it's probably not going to magically appear in your feed (mainly for older/unavailable titles).
+* add notification toggle in settings, and logic for "stale requests" notification. Kind of like a nudge that if it hasn't pulled a request in {configurable_time_period} since the recorded request's received date/time, you should go fetch it yourself because it's probably not going to magically appear in your feed (mainly for older/unavailable titles). # incorporated into 2.1.3/2.2.0 betas, currently broken logic
 
+* comedy standups discovery view from TMDB, as jellyseerr offers no obvious way to heavily and heuristically filter these out, to be integrated with extra requests tracking
 
 still broken / not implemented:
 
-* extra requests screen does not allow to load and use users, so tracked items there won't get downloaded as it doesn't know where to save it to. If we're lucky, it will default to the first user but right now the requester falls back to Unknown due to the code handling.
+* extra requests screen does not allow to load and use users, so tracked items there won't get downloaded as it doesn't know where to save it to. If we're lucky, it will default to the first user but right now the requester falls back to Unknown due to the code handling. # still broken but loading users now
 
-* checkboxes on downloads page will let you "Clear all" and actually do it, but still complains you didn't select anything.
+* checkboxes on downloads page will let you "Clear all" and actually do it, but still complains you didn't select anything. # fixed in betas redesign
 
 
 v 2.1.0 new features
